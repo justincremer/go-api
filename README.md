@@ -8,6 +8,5 @@ go run src/main.go
 ## Build
 ``` bash
 go build -o bin/start src/main.go
-
-``
+```
 
