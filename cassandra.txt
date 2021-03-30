@@ -1,0 +1,12 @@
+CREATE KEYSPACE go_db WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+
+CREATE TABLE IF NOT EXISTS users (
+user_id uuid,
+username text,
+name text,
+email text,
+phone text,
+PRIMARY KEY (user_id, username)
+);
+
+INSERT INTO users (user_id, username, name, email, phone) VALUES (now(), 'xiuxiu', 'Justin', 'xiuxiu@xiubox.org', '1234567890');

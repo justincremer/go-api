@@ -2,23 +2,19 @@ version: "3.7"
 
 services:
   db:
-    image: postgres
-    container_name: ljs-postgres
-    # restart: always
-    restart: unless-stopped
-    environment:
-      - POSTGRES_DB=admin
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_PORT=5432
-    # env_file:
-    #   - postgres.env
-    volumes:
-      - pg-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+    image: cassandra
+    container_name: go-db
+    ports: 
+      - "9042:9042"
+    restart: always
+    volumes: 
+      - cassandra-data:/var/lib/cassandra/data
+    healthcheck:
+      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
 
 volumes:
-  pg-data:
+  cassandra-data:
     external: true
-  
