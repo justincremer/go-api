@@ -1,4 +1,4 @@
-# A simple practicer api written in go
+# A simple rest api written in go
 
 ## Cassandra DB
 ### Create Volume
