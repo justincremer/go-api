@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	const port string = ":3000"
+	const port string = ":8080"
 
 	r, err := storage.SetupStorage()
 	if err != nil {
