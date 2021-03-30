@@ -9,15 +9,15 @@ type Service interface {
 }
 
 type service struct {
-	r Respository
+	repository Respository
 }
 
-func NewService(r Respository) *service {
-	return &service{r}
+func NewService(repository Respository) *service {
+	return &service{repository}
 }
 
-func (s *service) ListUsers() ([]string, error) {
-	users, err := s.r.ListUsers()
+func (service *service) ListUsers() ([]string, error) {
+	users, err := service.repository.ListUsers()
 	if err != nil {
 		return nil, err
 	}

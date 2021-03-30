@@ -23,11 +23,11 @@ func SetupStorage() (*storage, error) {
 	return &storage{db: session}, nil
 }
 
-func (s *storage) ListUsers() ([]string, error) {
+func (storage *storage) ListUsers() ([]string, error) {
 	var user string
 	var users []string
 
-	iter := s.db.Query(`SELECT name FROM users`).Iter()
+	iter := storage.db.Query(`SELECT name FROM users`).Iter()
 	for iter.Scan(&user) {
 		users = append(users, user)
 	}

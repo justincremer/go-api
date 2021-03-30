@@ -7,19 +7,19 @@ import (
 	reading "github.com/justincremer/go-api/pkg/read"
 )
 
-func welcomeHandler() func(w http.ResponseWriter, r *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		json.NewEncoder(w).Encode("Welcome to the money store")
+func welcomeHandler() func(writer http.ResponseWriter, response *http.Request) {
+	return func(writer http.ResponseWriter, response *http.Request) {
+		json.NewEncoder(writer).Encode("Welcome to the money store")
 	}
 }
 
-func listUsersHandler(rs reading.Service) func(w http.ResponseWriter, r *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		users, err := rs.ListUsers()
+func listUsersHandler(readingService reading.Service) func(writer http.ResponseWriter, response *http.Request) {
+	return func(writer http.ResponseWriter, response *http.Request) {
+		users, err := readingService.ListUsers()
 		if err != nil {
-			http.Error(w, "Error fetching users", http.StatusInternalServerError)
+			http.Error(writer, "Error fetching users", http.StatusInternalServerError)
 		}
 
-		json.NewEncoder(w).Encode(users)
+		json.NewEncoder(writer).Encode(users)
 	}
 }
