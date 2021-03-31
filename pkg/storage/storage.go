@@ -1,8 +1,6 @@
 package storage
 
 import (
-	"log"
-
 	"github.com/gocql/gocql"
 )
 
@@ -21,21 +19,4 @@ func SetupStorage() (*storage, error) {
 	}
 
 	return &storage{db: session}, nil
-}
-
-func (storage *storage) ListUsers() ([]string, error) {
-	var user string
-	var users []string
-
-	iter := storage.db.Query(`SELECT name FROM users`).Iter()
-	for iter.Scan(&user) {
-		users = append(users, user)
-	}
-
-	if err := iter.Close(); err != nil {
-		log.Fatal(err)
-		return nil, err
-	}
-
-	return users, nil
 }

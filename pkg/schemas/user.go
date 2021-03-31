@@ -1,4 +1,4 @@
-package writing
+package schemas
 
 type User struct {
 	Id       string `json:"id",omitempty`
